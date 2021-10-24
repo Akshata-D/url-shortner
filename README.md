@@ -1,5 +1,5 @@
 # url-shortner
-GIT
+Steps to follow:
 
 1) git clone https://github.com/Akshata-D/url-shortner.git
 2) cd url-shortner
