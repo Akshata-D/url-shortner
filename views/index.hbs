@@ -1,0 +1,37 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<h1>Enter URL to be shorten:</h1>
+<input type="text" id="url">
+<button id="shortenBtn">Shorten</button>
+<br>
+<a href="#" id="href" target="_blank" style="display: none;">ttt</a><br>
+<span id="errorMsg" style="display: none;"></span>
+<script>
+    const showError = ()=>{
+        $("#href").hide();
+                    $('#errorMsg').text('Some error has occurred').show();
+    }
+    document.getElementById("shortenBtn").addEventListener("click", () => {
+        $.ajax({
+            type: "POST",
+            url: '/shortenUrl',
+            data: {
+                url: $('#url').val()
+            },
+            success: function (response) {
+                if (response !== 'Error') {
+                    $("#href").text(response);
+                    $("#href").attr('href', response).show();
+                    $('#errorMsg').hide();
+                }
+                else {
+                    showError();
+                }
+            },
+            error: function (err) {
+                showError();
+            }
+        });
+    });
+</script>
